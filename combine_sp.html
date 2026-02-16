@@ -154,7 +154,7 @@ function draw(){
       v += Math.sin(dist * 0.06 - t * 0.012 * speed) * 0.08;
     } else if(mode==='rings'){
       v = dist / (maxR * 0.12) - t * 0.025 * speed;
-      v += Math.sin(ang * 3 + t * 0.02 * speed) * 0.2;
+      v += Math.sin(ang * 8 + t * 0.02 * speed) * 0.01;
     } else {
       const arms = 3;
       v = arms * ang / (Math.PI * 2) + dist * 0.8 / maxR - t * 0.012 * speed;
