@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pixelated Tie-Dye Spiral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rampart+One&family=Zen+Dots&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -13,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Courier New', monospace;
+    font-family: 'Zen Dots', 'Courier New', monospace;
   }
   canvas {
     position: fixed;
@@ -30,6 +33,7 @@
     text-shadow: 0 0 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.6);
   }
   .content h1 {
+    font-family: 'Rampart One', 'Zen Dots', cursive;
     font-size: clamp(2rem, 6vw, 5rem);
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -59,7 +63,7 @@
     padding: 8px 16px;
     border-radius: 8px;
     cursor: pointer;
-    font-family: 'Courier New', monospace;
+    font-family: 'Zen Dots', 'Courier New', monospace;
     font-size: 0.75rem;
     letter-spacing: 0.1em;
     transition: all 0.2s;
@@ -142,12 +146,26 @@
     border-radius: 12px;
     padding: 10px 16px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
+    gap: 6px 10px;
     min-width: 320px;
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
+  }
+  .player-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+  .player-bottom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
   }
   .player-bar button {
     background: none;
@@ -248,26 +266,175 @@
     border: none;
     cursor: pointer;
   }
+
+  /* Sidebar */
+  .sidebar-toggle {
+    position: fixed;
+    top: 16px; left: 16px;
+    z-index: 30;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    font-size: 1.2rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Zen Dots', 'Courier New', monospace;
+  }
+  .sidebar-toggle.shifted {
+    left: 296px;
+  }
+  .sidebar-toggle:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.3);
+  }
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 25;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(16px);
+    border-right: 1px solid rgba(255,255,255,0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Zen Dots', 'Courier New', monospace;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    font-family: 'Rampart One', 'Zen Dots', cursive;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .sidebar-header button {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 2px 6px;
+    transition: color 0.2s;
+  }
+  .sidebar-header button:hover {
+    color: white;
+  }
+  .track-list {
+    list-style: none;
+    overflow-y: auto;
+    flex: 1;
+    padding: 8px 0;
+  }
+  .track-list li {
+    padding: 10px 16px;
+    color: rgba(255,255,255,0.65);
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.03em;
+    border-left: 3px solid transparent;
+  }
+  .track-list li:hover {
+    background: rgba(255,255,255,0.06);
+    color: white;
+  }
+  .track-list li.active {
+    color: white;
+    background: rgba(255,255,255,0.08);
+    border-left-color: rgba(150,50,255,0.7);
+  }
+  .track-list li.album-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(200,170,255,0.85);
+    font-size: 0.74rem;
+  }
+  .track-list li.album-item:hover {
+    color: rgb(200,170,255);
+  }
+  .album-icon {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .sidebar-back {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Zen Dots', 'Courier New', monospace;
+    font-size: 0.65rem;
+    cursor: pointer;
+    padding: 8px 16px;
+    text-align: left;
+    transition: color 0.15s;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .sidebar-back:hover {
+    color: white;
+  }
+
+  /* Player nav buttons */
+  .player-bar .nav-btn {
+    font-size: 0.7rem;
+    opacity: 0.65;
+  }
+  .player-bar .nav-btn:hover {
+    opacity: 1;
+  }
+  .player-bar .shuffle-btn.active {
+    color: rgb(150,50,255);
+    opacity: 1;
+  }
 </style>
 </head>
 <body>
 <canvas id="spiral"></canvas>
 
-<audio id="music" src="PSY - GENTLEMAN M_V.mp3" preload="auto"></audio>
+<audio id="music" src="tracks/PSY - GENTLEMAN M_V.mp3" preload="auto"></audio>
+
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span>Tracks</span>
+    <button onclick="toggleSidebar()">&times;</button>
+  </div>
+  <ul class="track-list" id="trackList"></ul>
+</div>
 
 <div class="content">
   <img id="dancer" src="deal-with-it-trailblazer.gif" alt="Deal With It Trailblazer" style="max-width:200px; transition: none;">
   <div class="player-bar">
-    <button id="playBtn" onclick="togglePlay()" title="Play/Pause">&#9654;&#65039;</button>
-    <span class="player-title" id="trackTitle">PSY - GENTLEMAN</span>
-    <span class="player-time" id="curTime">0:00</span>
-    <div class="player-slider-wrap">
-      <input type="range" id="seekBar" min="0" max="100" value="0" step="0.1">
+    <div class="player-top">
+      <button class="nav-btn" onclick="prevTrack()" title="Previous">&#9664;&#9664;</button>
+      <button id="playBtn" onclick="togglePlay()" title="Play/Pause">&#9654;&#65039;</button>
+      <button class="nav-btn" onclick="nextTrack()" title="Next">&#9654;&#9654;</button>
+      <button class="nav-btn shuffle-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle">&#8645;</button>
+      <span class="player-title" id="trackTitle">PSY - GENTLEMAN</span>
+      <div class="volume-wrap">
+        <button id="muteBtn" onclick="toggleMute()" title="Mute">&#9835;</button>
+        <input type="range" id="volBar" min="0" max="1" value="1" step="0.01">
+      </div>
     </div>
-    <span class="player-time" id="durTime">0:00</span>
-    <div class="volume-wrap">
-      <button id="muteBtn" onclick="toggleMute()" title="Mute">&#9835;</button>
-      <input type="range" id="volBar" min="0" max="1" value="1" step="0.01">
+    <div class="player-bottom">
+      <span class="player-time" id="curTime">0:00</span>
+      <div class="player-slider-wrap">
+        <input type="range" id="seekBar" min="0" max="100" value="0" step="0.1">
+      </div>
+      <span class="player-time" id="durTime">0:00</span>
     </div>
   </div>
 <div class="controls">
@@ -426,6 +593,48 @@ function toggleDance(){
   document.getElementById('danceBtn').textContent='Dance: '+dance.name;
 }
 
+// Track & album data
+const library = {
+  singles: [
+    { file: "tracks/DAN DA DAN Season 2 ED _ Doukashiteru by WurtS _ Netflix Anime.mp3", title: "Doukashiteru - WurtS" },
+    { file: "tracks/KANA-BOON - Silhouette.mp3", title: "KANA-BOON - Silhouette" },
+    { file: "tracks/Kiminosei Remastered 2022.mp3", title: "Kiminosei Remastered 2022" },
+    { file: "tracks/PSY - GENTLEMAN M_V.mp3", title: "PSY - GENTLEMAN" },
+    { file: "tracks/RADWIMPS - movie ver Official Music Video.mp3", title: "RADWIMPS - Movie Ver" },
+    { file: "tracks/stay with me.mp3", title: "Stay With Me" },
+    { file: "tracks/the peggiesMusic Video.mp3", title: "The Peggies" },
+  ],
+  albums: [
+    {
+      name: "Graduation",
+      tracks: [
+        { file: "tracks/graduation/01 - Good Morning.mp3", title: "Good Morning" },
+        { file: "tracks/graduation/02 - Champion.mp3", title: "Champion" },
+        { file: "tracks/graduation/03 - Stronger.mp3", title: "Stronger" },
+        { file: "tracks/graduation/04 - I Wonder.mp3", title: "I Wonder" },
+        { file: "tracks/graduation/05 - Good Life feat. T-Pain.mp3", title: "Good Life ft. T-Pain" },
+        { file: "tracks/graduation/06 - Cant Tell Me Nothing.mp3", title: "Can't Tell Me Nothing" },
+        { file: "tracks/graduation/07 - Barry Bonds feat. Lil Wayne.mp3", title: "Barry Bonds ft. Lil Wayne" },
+        { file: "tracks/graduation/08 - Drunk & Hot Girls feat. Mos Def.mp3", title: "Drunk & Hot Girls ft. Mos Def" },
+        { file: "tracks/graduation/09 - Flashing Lights feat. Dwele.mp3", title: "Flashing Lights ft. Dwele" },
+        { file: "tracks/graduation/10 - Everything I Am feat. DJ Premier.mp3", title: "Everything I Am ft. DJ Premier" },
+        { file: "tracks/graduation/11 - The Glory.mp3", title: "The Glory" },
+        { file: "tracks/graduation/12 - Homecoming.mp3", title: "Homecoming" },
+        { file: "tracks/graduation/13 - Big Brother.mp3", title: "Big Brother" },
+        { file: "tracks/graduation/14 - Good Night feat. Mos Def & Al Be.mp3", title: "Good Night ft. Mos Def & Al Be" },
+        { file: "tracks/graduation/15 - Bittersweet Poetry feat. John Mayer.mp3", title: "Bittersweet Poetry ft. John Mayer" },
+      ]
+    }
+  ]
+};
+
+// Flatten all tracks into a single playable list
+const tracks = [...library.singles, ...library.albums.flatMap(a => a.tracks)];
+let currentTrackIndex = 3; // PSY is default
+let shuffleOn = false;
+let shuffledOrder = [];
+let shufflePos = 0;
+
 // Audio playback
 const music = document.getElementById('music');
 const seekBar = document.getElementById('seekBar');
@@ -462,6 +671,130 @@ function toggleMute(){
   document.getElementById('muteBtn').textContent = music.muted ? '\u2022' : '\u266B';
 }
 
+// Track management
+function loadTrack(index){
+  const wasPlaying = isPlaying;
+  currentTrackIndex = index;
+  music.src = tracks[index].file;
+  document.getElementById('trackTitle').textContent = tracks[index].title;
+  highlightActiveTrack();
+  if(wasPlaying){
+    music.play();
+  } else {
+    isPlaying = false;
+  }
+}
+
+function highlightActiveTrack(){
+  const items = document.querySelectorAll('.track-list li[data-index]');
+  items.forEach(li => {
+    li.classList.toggle('active', parseInt(li.dataset.index) === currentTrackIndex);
+  });
+}
+
+function getNextIndex(direction){
+  if(shuffleOn && shuffledOrder.length){
+    shufflePos = (shufflePos + direction + shuffledOrder.length) % shuffledOrder.length;
+    return shuffledOrder[shufflePos];
+  }
+  return (currentTrackIndex + direction + tracks.length) % tracks.length;
+}
+
+function nextTrack(){
+  loadTrack(getNextIndex(1));
+  if(!isPlaying) togglePlay();
+}
+
+function prevTrack(){
+  if(music.currentTime > 3){
+    music.currentTime = 0;
+    return;
+  }
+  loadTrack(getNextIndex(-1));
+  if(!isPlaying) togglePlay();
+}
+
+function generateShuffledOrder(){
+  shuffledOrder = tracks.map((_, i) => i);
+  for(let i = shuffledOrder.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledOrder[i], shuffledOrder[j]] = [shuffledOrder[j], shuffledOrder[i]];
+  }
+  shufflePos = shuffledOrder.indexOf(currentTrackIndex);
+}
+
+function toggleShuffle(){
+  shuffleOn = !shuffleOn;
+  document.getElementById('shuffleBtn').classList.toggle('active', shuffleOn);
+  if(shuffleOn) generateShuffledOrder();
+}
+
+// Sidebar
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.querySelector('.sidebar-toggle').classList.toggle('shifted');
+}
+
+function getTrackGlobalIndex(file){
+  return tracks.findIndex(t => t.file === file);
+}
+
+function showMainList(){
+  const ul = document.getElementById('trackList');
+  ul.innerHTML = '';
+  // Singles
+  library.singles.forEach(t => {
+    const li = document.createElement('li');
+    const idx = getTrackGlobalIndex(t.file);
+    li.textContent = t.title;
+    li.dataset.index = idx;
+    li.addEventListener('click', () => {
+      loadTrack(idx);
+      if(!isPlaying) togglePlay();
+      toggleSidebar();
+    });
+    ul.appendChild(li);
+  });
+  // Albums
+  library.albums.forEach(album => {
+    const li = document.createElement('li');
+    li.className = 'album-item';
+    li.innerHTML = '<span class="album-icon">\uD83D\uDCBF</span>' + album.name;
+    li.addEventListener('click', () => showAlbumList(album));
+    ul.appendChild(li);
+  });
+  highlightActiveTrack();
+}
+
+function showAlbumList(album){
+  const ul = document.getElementById('trackList');
+  ul.innerHTML = '';
+  // Back button
+  const back = document.createElement('button');
+  back.className = 'sidebar-back';
+  back.textContent = '\u2190 Back';
+  back.addEventListener('click', showMainList);
+  ul.appendChild(back);
+  // Album tracks
+  album.tracks.forEach(t => {
+    const li = document.createElement('li');
+    const idx = getTrackGlobalIndex(t.file);
+    li.textContent = t.title;
+    li.dataset.index = idx;
+    li.addEventListener('click', () => {
+      loadTrack(idx);
+      if(!isPlaying) togglePlay();
+      toggleSidebar();
+    });
+    ul.appendChild(li);
+  });
+  highlightActiveTrack();
+}
+
+function buildTrackList(){
+  showMainList();
+}
+
 // Seek bar
 seekBar.addEventListener('input', ()=>{ isSeeking = true; });
 seekBar.addEventListener('change', ()=>{
@@ -477,7 +810,7 @@ music.addEventListener('timeupdate', ()=>{
     curTimeEl.textContent = fmtTime(music.currentTime);
   }
 });
-music.addEventListener('ended', ()=>{ music.currentTime = 0; music.play(); });
+music.addEventListener('ended', ()=>{ nextTrack(); });
 
 // Effects start/stop
 function startEffects(){
@@ -525,6 +858,7 @@ function spawnDiamonds(){
   }, 300);
 }
 
+buildTrackList();
 spawnDiamonds();
 draw();
 </script>
