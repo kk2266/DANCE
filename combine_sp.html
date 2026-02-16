@@ -142,58 +142,58 @@ function draw(){
     // Reconstruct angle in 0..1 range using atan2, then use trig for color
     const ang = Math.atan2(dy, dx); // -PI to PI
 
-    // Compute v for each mode
-    const vSpiral = 1 * ang / (Math.PI * 2) + dist * 0.3 / maxR - t * 0.008 * speed
-      + Math.sin(dist * 0.06 - t * 0.012 * speed) * 0.08;
-    const vRings = dist / (maxR * 0.12) - t * 0.025 * speed
-      + Math.sin(ang * 8 + t * 0.02 * speed) * 0.01;
-    const vVortex = 3 * ang / (Math.PI * 2) + dist * 0.8 / maxR - t * 0.012 * speed
-      + Math.sin(dist * 0.1 + t * 0.02) * 0.06
-      + Math.cos(ang * 2 - t * 0.015) * 0.04;
+    // Mode parameters: [angArms, distScale, timeRate, waveFreq, waveAmp, waveTimeRate, angWaveN, angWaveAmp, angWaveTimeRate]
+    const modeParams = [
+      [1,   0.3,   0.008, 0.06, 0.08, 0.012, 0,  0,    0    ], // spiral
+      [0,   8.33,  0.025, 0,    0,    0,     8,  0.01, 0.02  ], // rings
+      [3,   0.8,   0.012, 0.1,  0.06, 0.02,  2,  0.04, 0.015 ], // vortex
+    ];
 
-    let v;
-    if(mode==='spiral') v = vSpiral;
-    else if(mode==='rings') v = vRings;
-    else if(mode==='vortex') v = vVortex;
-
-    // Noise for organic tie-dye texture
-    const noise = Math.sin(x * 0.7 + y * 1.3) * 0.015 + Math.sin(x * 1.1 - y * 0.9) * 0.01;
-    const bright = 0.85 + 0.15 * Math.sin(dist * 0.05 + t * 0.01);
-
-    // Helper: convert a v value to final RGB
-    function vToColor(val) {
-      val += noise;
-      const phase = val * Math.PI * 2;
-      const idx_s = ((Math.atan2(Math.sin(phase), Math.cos(phase)) / (Math.PI * 2)) + 1.0) % 1.0;
-      const pos = idx_s * N;
-      const ci = Math.floor(pos);
-      const cf = pos - ci;
-      const c1 = colors[ci % N], c2 = colors[(ci + 1) % N];
-      return [
-        Math.min(255, (c1[0]+(c2[0]-c1[0])*cf) * bright),
-        Math.min(255, (c1[1]+(c2[1]-c1[1])*cf) * bright),
-        Math.min(255, (c1[2]+(c2[2]-c1[2])*cf) * bright)
-      ];
-    }
-
-    let r, g, b;
+    let p0, p1, blend;
     if(mode==='random'){
-      // Blend final colors (not raw v) to avoid atan2 seam artifacts
-      const allV = [vSpiral, vRings, vVortex];
       const cycle = t * speed / randomCycleDuration;
       const fromIdx = Math.floor(cycle) % 3;
       const toIdx = (fromIdx + 1) % 3;
-      let blend = (cycle % 1);
+      blend = (cycle % 1);
       blend = blend * blend * (3 - 2 * blend);
-      const cFrom = vToColor(allV[fromIdx]);
-      const cTo = vToColor(allV[toIdx]);
-      r = cFrom[0] * (1 - blend) + cTo[0] * blend;
-      g = cFrom[1] * (1 - blend) + cTo[1] * blend;
-      b = cFrom[2] * (1 - blend) + cTo[2] * blend;
+      p0 = modeParams[fromIdx];
+      p1 = modeParams[toIdx];
     } else {
-      const c = vToColor(v);
-      r = c[0]; g = c[1]; b = c[2];
+      const mi2 = mode==='spiral'?0:mode==='rings'?1:2;
+      p0 = modeParams[mi2];
+      p1 = p0;
+      blend = 0;
     }
+
+    // Lerp all parameters
+    const pAngArms   = p0[0] + (p1[0]-p0[0]) * blend;
+    const pDistScale = p0[1] + (p1[1]-p0[1]) * blend;
+    const pTimeRate  = p0[2] + (p1[2]-p0[2]) * blend;
+    const pWaveFreq  = p0[3] + (p1[3]-p0[3]) * blend;
+    const pWaveAmp   = p0[4] + (p1[4]-p0[4]) * blend;
+    const pWaveTime  = p0[5] + (p1[5]-p0[5]) * blend;
+    const pAngWaveN  = p0[6] + (p1[6]-p0[6]) * blend;
+    const pAngWaveAmp= p0[7] + (p1[7]-p0[7]) * blend;
+    const pAngWaveT  = p0[8] + (p1[8]-p0[8]) * blend;
+
+    // Compute v from blended parameters
+    let v = Math.atan2(Math.sin(pAngArms * ang), Math.cos(pAngArms * ang)) / (Math.PI * 2) + dist * pDistScale / maxR - t * pTimeRate * speed;
+    v += Math.sin(dist * pWaveFreq - t * pWaveTime * speed) * pWaveAmp;
+    v += Math.sin(ang * pAngWaveN + t * pAngWaveT * speed) * pAngWaveAmp;
+
+    // Noise for organic tie-dye texture
+    v += Math.sin(x * 0.7 + y * 1.3) * 0.015 + Math.sin(x * 1.1 - y * 0.9) * 0.01;
+
+    const bright = 0.85 + 0.15 * Math.sin(dist * 0.05 + t * 0.01);
+    const phase = v * Math.PI * 2;
+    const idx_s = ((Math.atan2(Math.sin(phase), Math.cos(phase)) / (Math.PI * 2)) + 1.0) % 1.0;
+    const pos = idx_s * N;
+    const ci = Math.floor(pos);
+    const cf = pos - ci;
+    const c1 = colors[ci % N], c2 = colors[(ci + 1) % N];
+    const r = Math.min(255, (c1[0]+(c2[0]-c1[0])*cf) * bright);
+    const g = Math.min(255, (c1[1]+(c2[1]-c1[1])*cf) * bright);
+    const b = Math.min(255, (c1[2]+(c2[2]-c1[2])*cf) * bright);
 
     const p = (y * w + x) * 4;
     d[p]   = r;
