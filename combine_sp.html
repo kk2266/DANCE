@@ -68,12 +68,208 @@
     background: rgba(255,255,255,0.15);
     border-color: rgba(255,255,255,0.3);
   }
+  .controls button.active {
+    background: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.5);
+  }
+
+  /* Music notes */
+  .music-note {
+    position: fixed;
+    z-index: 15;
+    font-size: 2rem;
+    pointer-events: none;
+    opacity: 0;
+    animation: noteFloat 3s ease-out forwards;
+  }
+  @keyframes noteFloat {
+    0%   { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+    50%  { opacity: 0.8; }
+    100% { opacity: 0; transform: translateY(-200px) rotate(30deg) scale(0.3); }
+  }
+
+  /* Diamond sparkles */
+  .diamond {
+    position: fixed;
+    z-index: 15;
+    pointer-events: none;
+    opacity: 0;
+    animation: diamondPop 1.4s ease-out forwards;
+  }
+  .diamond::before, .diamond::after {
+    content: '';
+    position: absolute;
+    background: currentColor;
+  }
+  .diamond::before {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    border-radius: 1px;
+    box-shadow: 0 0 6px currentColor;
+  }
+  .diamond::after {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    border-radius: 1px;
+    box-shadow: 0 0 6px currentColor;
+  }
+  .diamond-inner {
+    position: absolute;
+    inset: 30%;
+    background: currentColor;
+    transform: rotate(45deg);
+    box-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
+  }
+  @keyframes diamondPop {
+    0%   { opacity: 0; transform: scale(0) rotate(0deg); }
+    20%  { opacity: 1; transform: scale(1.2) rotate(20deg); }
+    50%  { opacity: 0.9; transform: scale(0.9) rotate(45deg); }
+    100% { opacity: 0; transform: scale(0.3) rotate(90deg); }
+  }
+
+  /* Music player bar */
+  .player-bar {
+    margin-top: 30px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 320px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .player-bar button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 2px 4px;
+    line-height: 1;
+    transition: transform 0.15s, opacity 0.15s;
+    opacity: 0.8;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+  }
+  .player-bar button:hover {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  .player-title {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px;
+    letter-spacing: 0.05em;
+  }
+  .player-time {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.5);
+    min-width: 32px;
+    text-align: center;
+    user-select: none;
+  }
+  .player-slider-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .player-slider-wrap input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.15);
+    outline: none;
+    cursor: pointer;
+  }
+  .player-slider-wrap input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 6px rgba(255,255,255,0.4);
+    cursor: pointer;
+  }
+  .player-slider-wrap input[type=range]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    box-shadow: 0 0 6px rgba(255,255,255,0.4);
+    cursor: pointer;
+  }
+  .volume-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .volume-wrap input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.2);
+    outline: none;
+    cursor: pointer;
+  }
+  .volume-wrap input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+  }
+  .volume-wrap input[type=range]::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    cursor: pointer;
+  }
 </style>
 </head>
 <body>
 <canvas id="spiral"></canvas>
+
+<audio id="music" src="PSY - GENTLEMAN M_V.mp3" preload="auto"></audio>
+
 <div class="content">
   <img id="dancer" src="deal-with-it-trailblazer.gif" alt="Deal With It Trailblazer" style="max-width:200px; transition: none;">
+  <div class="player-bar">
+    <button id="playBtn" onclick="togglePlay()" title="Play/Pause">&#9654;&#65039;</button>
+    <span class="player-title" id="trackTitle">PSY - GENTLEMAN</span>
+    <span class="player-time" id="curTime">0:00</span>
+    <div class="player-slider-wrap">
+      <input type="range" id="seekBar" min="0" max="100" value="0" step="0.1">
+    </div>
+    <span class="player-time" id="durTime">0:00</span>
+    <div class="volume-wrap">
+      <button id="muteBtn" onclick="toggleMute()" title="Mute">&#9835;</button>
+      <input type="range" id="volBar" min="0" max="1" value="1" step="0.01">
+    </div>
+  </div>
 <div class="controls">
   <button id="pixelBtn" onclick="togglePixel()">Pixel: 8px</button>
   <button id="speedBtn" onclick="toggleSpeed()">Speed: Normal</button>
@@ -230,6 +426,106 @@ function toggleDance(){
   document.getElementById('danceBtn').textContent='Dance: '+dance.name;
 }
 
+// Audio playback
+const music = document.getElementById('music');
+const seekBar = document.getElementById('seekBar');
+const volBar = document.getElementById('volBar');
+const curTimeEl = document.getElementById('curTime');
+const durTimeEl = document.getElementById('durTime');
+let isPlaying = false, isSeeking = false;
+let noteInterval = null;
+
+function fmtTime(s){
+  if(!isFinite(s)) return '0:00';
+  const m = Math.floor(s/60);
+  const sec = Math.floor(s%60);
+  return m + ':' + (sec<10?'0':'') + sec;
+}
+
+function togglePlay(){
+  const btn = document.getElementById('playBtn');
+  if(isPlaying){
+    music.pause();
+    isPlaying = false;
+    btn.textContent = '\u25B6';
+    stopEffects();
+  } else {
+    music.play();
+    isPlaying = true;
+    btn.textContent = '\u2759\u2759';
+    startEffects();
+  }
+}
+
+function toggleMute(){
+  music.muted = !music.muted;
+  document.getElementById('muteBtn').textContent = music.muted ? '\u2022' : '\u266B';
+}
+
+// Seek bar
+seekBar.addEventListener('input', ()=>{ isSeeking = true; });
+seekBar.addEventListener('change', ()=>{
+  music.currentTime = (seekBar.value / 100) * music.duration;
+  isSeeking = false;
+});
+volBar.addEventListener('input', ()=>{ music.volume = volBar.value; });
+
+music.addEventListener('loadedmetadata', ()=>{ durTimeEl.textContent = fmtTime(music.duration); });
+music.addEventListener('timeupdate', ()=>{
+  if(!isSeeking && isFinite(music.duration)){
+    seekBar.value = (music.currentTime / music.duration) * 100;
+    curTimeEl.textContent = fmtTime(music.currentTime);
+  }
+});
+music.addEventListener('ended', ()=>{ music.currentTime = 0; music.play(); });
+
+// Effects start/stop
+function startEffects(){
+  spawnNotes();
+}
+function stopEffects(){
+  clearInterval(noteInterval); noteInterval = null;
+}
+
+// Floating music notes
+const noteChars = ['\u266A','\u266B','\u266C','\u2669'];
+function spawnNotes(){
+  if(noteInterval) return;
+  noteInterval = setInterval(()=>{
+    const note = document.createElement('div');
+    note.className = 'music-note';
+    note.textContent = noteChars[Math.floor(Math.random()*noteChars.length)];
+    note.style.left = (10 + Math.random()*80) + 'vw';
+    note.style.bottom = (5 + Math.random()*15) + 'vh';
+    note.style.color = `hsl(${Math.random()*360}, 80%, 70%)`;
+    note.style.fontSize = (1.2 + Math.random()*1.5) + 'rem';
+    document.body.appendChild(note);
+    note.addEventListener('animationend', ()=> note.remove());
+  }, 400);
+}
+
+// Diamond sparkles across screen
+let diamondInterval = null;
+function spawnDiamonds(){
+  if(diamondInterval) return;
+  diamondInterval = setInterval(()=>{
+    const d = document.createElement('div');
+    d.className = 'diamond';
+    const size = 10 + Math.random() * 20;
+    d.style.width = size + 'px';
+    d.style.height = size + 'px';
+    d.style.left = (5 + Math.random() * 90) + 'vw';
+    d.style.top = (5 + Math.random() * 90) + 'vh';
+    d.style.color = `hsl(${Math.random()*360}, 70%, 75%)`;
+    const inner = document.createElement('div');
+    inner.className = 'diamond-inner';
+    d.appendChild(inner);
+    document.body.appendChild(d);
+    d.addEventListener('animationend', ()=> d.remove());
+  }, 300);
+}
+
+spawnDiamonds();
 draw();
 </script>
 </body>
