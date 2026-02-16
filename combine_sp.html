@@ -73,11 +73,12 @@
 <body>
 <canvas id="spiral"></canvas>
 <div class="content">
-  <img src="deal-with-it-trailblazer.gif" alt="Deal With It Trailblazer" style="max-width:200px;">
+  <img id="dancer" src="deal-with-it-trailblazer.gif" alt="Deal With It Trailblazer" style="max-width:200px; transition: none;">
 <div class="controls">
   <button id="pixelBtn" onclick="togglePixel()">Pixel: 8px</button>
   <button id="speedBtn" onclick="toggleSpeed()">Speed: Normal</button>
   <button id="modeBtn" onclick="toggleMode()">Mode: Spiral</button>
+  <button id="danceBtn" onclick="toggleDance()">Dance: Chill</button>
 </div>
 <script>
 const canvas = document.getElementById('spiral');
@@ -94,6 +95,15 @@ let pixelSize=8, speed=1, mode='spiral', time=0;
 const pixelSizes=[4,8,12,16]; let pi=1;
 const speeds=[0.5,1,2]; let si=1;
 const modes=['spiral','rings','vortex']; let mi=0;
+
+// Dance presets: { scale, rotation, bounceY, bounceX, freqMult }
+const dancePresets = [
+  { name:'Chill',   scale:0.04, rot:3,  bY:3,  bX:2,  freq:0.6  },
+  { name:'Groove',  scale:0.08, rot:5,  bY:6,  bX:4,  freq:1.0  },
+  { name:'Hyped',   scale:0.14, rot:10, bY:12, bX:8,  freq:1.6  },
+  { name:'Chaos',   scale:0.22, rot:20, bY:24, bX:16, freq:2.5  },
+];
+let di=0, dance=dancePresets[0];
 
 function resize(){
   canvas.width=Math.ceil(window.innerWidth/pixelSize);
@@ -175,6 +185,17 @@ function draw(){
   }
 
   ctx.putImageData(img, 0, 0);
+
+  // Sync GIF dance to the same time/speed driving the spiral
+  const dancer = document.getElementById('dancer');
+  const f = dance.freq;
+  const pulse = 1 + dance.scale * Math.sin(time * 0.06 * speed * f);
+  const rot = dance.rot * Math.sin(time * 0.04 * speed * f);
+  const bounceY = dance.bY * Math.sin(time * 0.08 * speed * f);
+  const bounceX = dance.bX * Math.sin(time * 0.05 * speed * f + 1);
+  dancer.style.transform =
+    `translateY(${bounceY}px) translateX(${bounceX}px) scale(${pulse}) rotate(${rot}deg)`;
+
   time++;
   requestAnimationFrame(draw);
 }
@@ -190,6 +211,10 @@ function toggleSpeed(){
 function toggleMode(){
   mi=(mi+1)%modes.length; mode=modes[mi];
   document.getElementById('modeBtn').textContent='Mode: '+['Spiral','Rings','Vortex'][mi];
+}
+function toggleDance(){
+  di=(di+1)%dancePresets.length; dance=dancePresets[di];
+  document.getElementById('danceBtn').textContent='Dance: '+dance.name;
 }
 
 draw();
