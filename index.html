@@ -432,7 +432,7 @@
     <div class="player-bottom">
       <span class="player-time" id="curTime">0:00</span>
       <div class="player-slider-wrap">
-        <input type="range" id="seekBar" min="0" max="100" value="0" step="0.1">
+        <input type="range" id="seekBar" min="0" max="10000" value="0" step="1">
       </div>
       <span class="player-time" id="durTime">0:00</span>
     </div>
@@ -600,7 +600,6 @@ const library = {
     { file: "tracks/RADWIMPS - movie ver Official Music Video.mp3", title: "RADWIMPS - Movie Ver" },
     { file: "tracks/stay with me.mp3", title: "Stay With Me" },
     { file: "tracks/the peggiesMusic Video.mp3", title: "The Peggies" },
-    { file: "tracks/japan jazz.flac", title: "Japan Jazz" },
   ],
   albums: [
     {
@@ -887,15 +886,16 @@ function buildTrackList(){
 // Seek bar
 seekBar.addEventListener('input', ()=>{ isSeeking = true; });
 seekBar.addEventListener('change', ()=>{
-  music.currentTime = (seekBar.value / 100) * music.duration;
+  music.currentTime = (seekBar.value / 10000) * music.duration;
   isSeeking = false;
 });
 volBar.addEventListener('input', ()=>{ music.volume = volBar.value; });
 
 music.addEventListener('loadedmetadata', ()=>{ durTimeEl.textContent = fmtTime(music.duration); });
+music.addEventListener('durationchange', ()=>{ durTimeEl.textContent = fmtTime(music.duration); });
 music.addEventListener('timeupdate', ()=>{
   if(!isSeeking && isFinite(music.duration)){
-    seekBar.value = (music.currentTime / music.duration) * 100;
+    seekBar.value = (music.currentTime / music.duration) * 10000;
     curTimeEl.textContent = fmtTime(music.currentTime);
   }
 });
