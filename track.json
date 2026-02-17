@@ -101,6 +101,7 @@
     {
       "name": "AT.LONG.LAST.A$AP",
       "tracks": [
+        { "file": "tracks/asap(flaq)/01-asap_rocky-holy_ghost_(feat._joe_fox).flac", "title": "Holy Ghost ft. Joe Fox" },
         { "file": "tracks/asap(flaq)/02-asap_rocky-canal_st._(feat._bones).flac", "title": "Canal St. ft. Bones" },
         { "file": "tracks/asap(flaq)/03-asap_rocky-fine_whine_(feat._future_and_m.i.a.).flac", "title": "Fine Whine ft. Future & M.I.A." },
         { "file": "tracks/asap(flaq)/04-asap_rocky-lsd.flac", "title": "L$D" },
@@ -118,6 +119,16 @@
         { "file": "tracks/asap(flaq)/16-asap_rocky-dreams_(interlude).flac", "title": "Dreams (Interlude)" },
         { "file": "tracks/asap(flaq)/17-asap_rocky-everyday_(feat._rod_stewart_and_miguel_and_mark_ronson).flac", "title": "Everyday ft. Rod Stewart, Miguel & Mark Ronson" },
         { "file": "tracks/asap(flaq)/18-asap_rocky-back_home_(feat._mos_def_and_acyde_and_yams).flac", "title": "Back Home ft. Mos Def, Acyde & Yams" }
+      ]
+    },
+    {
+      "name": "Kind of Blue",
+      "tracks": [
+        { "file": "tracks/Miles Davis/01. So What.mp3", "title": "So What" },
+        { "file": "tracks/Miles Davis/02. Freddie Freeloader.mp3", "title": "Freddie Freeloader" },
+        { "file": "tracks/Miles Davis/03. Blue In Green.mp3", "title": "Blue In Green" },
+        { "file": "tracks/Miles Davis/04. All Blues.mp3", "title": "All Blues" },
+        { "file": "tracks/Miles Davis/05. Flamenco Sketches.mp3", "title": "Flamenco Sketches" }
       ]
     }
   ]
