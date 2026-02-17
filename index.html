@@ -541,12 +541,9 @@ function draw(){
       blend = blend * blend * (3 - 2 * blend);
       const cF = vToRGB(allV[fromIdx]);
       const cT = vToRGB(allV[toIdx]);
-      // Power-curve crossfade: each pattern dims out/in, hiding muddy overlap
-      const wF = (1 - blend) * (1 - blend);
-      const wT = blend * blend;
-      r = cF[0] * wF + cT[0] * wT;
-      g = cF[1] * wF + cT[1] * wT;
-      b = cF[2] * wF + cT[2] * wT;
+      r = cF[0] * (1 - blend) + cT[0] * blend;
+      g = cF[1] * (1 - blend) + cT[1] * blend;
+      b = cF[2] * (1 - blend) + cT[2] * blend;
     } else {
       const v = mode==='spiral'?vSpiral:mode==='rings'?vRings:vVortex;
       const c = vToRGB(v);
