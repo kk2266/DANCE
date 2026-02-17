@@ -1,0 +1,124 @@
+{
+  "singles": [
+    { "file": "tracks/DAN DA DAN Season 2 ED _ Doukashiteru by WurtS _ Netflix Anime.mp3", "title": "Doukashiteru - WurtS" },
+    { "file": "tracks/KANA-BOON - Silhouette.mp3", "title": "KANA-BOON - Silhouette" },
+    { "file": "tracks/Kiminosei Remastered 2022.mp3", "title": "Kiminosei Remastered 2022" },
+    { "file": "tracks/PSY - GENTLEMAN M_V.mp3", "title": "PSY - GENTLEMAN" },
+    { "file": "tracks/RADWIMPS - movie ver Official Music Video.mp3", "title": "RADWIMPS - Movie Ver" },
+    { "file": "tracks/stay with me.mp3", "title": "Stay With Me" },
+    { "file": "tracks/the peggiesMusic Video.mp3", "title": "The Peggies" }
+  ],
+  "albums": [
+    {
+      "name": "Graduation",
+      "tracks": [
+        { "file": "tracks/graduation/01 - Good Morning.mp3", "title": "Good Morning" },
+        { "file": "tracks/graduation/02 - Champion.mp3", "title": "Champion" },
+        { "file": "tracks/graduation/03 - Stronger.mp3", "title": "Stronger" },
+        { "file": "tracks/graduation/04 - I Wonder.mp3", "title": "I Wonder" },
+        { "file": "tracks/graduation/05 - Good Life feat. T-Pain.mp3", "title": "Good Life ft. T-Pain" },
+        { "file": "tracks/graduation/06 - Cant Tell Me Nothing.mp3", "title": "Can't Tell Me Nothing" },
+        { "file": "tracks/graduation/07 - Barry Bonds feat. Lil Wayne.mp3", "title": "Barry Bonds ft. Lil Wayne" },
+        { "file": "tracks/graduation/08 - Drunk & Hot Girls feat. Mos Def.mp3", "title": "Drunk & Hot Girls ft. Mos Def" },
+        { "file": "tracks/graduation/09 - Flashing Lights feat. Dwele.mp3", "title": "Flashing Lights ft. Dwele" },
+        { "file": "tracks/graduation/10 - Everything I Am feat. DJ Premier.mp3", "title": "Everything I Am ft. DJ Premier" },
+        { "file": "tracks/graduation/11 - The Glory.mp3", "title": "The Glory" },
+        { "file": "tracks/graduation/12 - Homecoming.mp3", "title": "Homecoming" },
+        { "file": "tracks/graduation/13 - Big Brother.mp3", "title": "Big Brother" },
+        { "file": "tracks/graduation/14 - Good Night feat. Mos Def & Al Be.mp3", "title": "Good Night ft. Mos Def & Al Be" },
+        { "file": "tracks/graduation/15 - Bittersweet Poetry feat. John Mayer.mp3", "title": "Bittersweet Poetry ft. John Mayer" }
+      ]
+    },
+    {
+      "name": "Graduation (FLAC)",
+      "tracks": [
+        { "file": "tracks/graduation(flac)/01 - Good Morning.flac", "title": "Good Morning" },
+        { "file": "tracks/graduation(flac)/02 - Champion.flac", "title": "Champion" },
+        { "file": "tracks/graduation(flac)/03 - Stronger.flac", "title": "Stronger" },
+        { "file": "tracks/graduation(flac)/04 - I Wonder.flac", "title": "I Wonder" },
+        { "file": "tracks/graduation(flac)/05 - Good Life feat. T-Pain.flac", "title": "Good Life ft. T-Pain" },
+        { "file": "tracks/graduation(flac)/06 - Can't Tell Me Nothing.flac", "title": "Can't Tell Me Nothing" },
+        { "file": "tracks/graduation(flac)/07 - Barry Bonds feat. Lil Wayne.flac", "title": "Barry Bonds ft. Lil Wayne" },
+        { "file": "tracks/graduation(flac)/08 - Drunk & Hot Girls feat. Mos Def.flac", "title": "Drunk & Hot Girls ft. Mos Def" },
+        { "file": "tracks/graduation(flac)/09 - Flashing Lights feat. Dwele.flac", "title": "Flashing Lights ft. Dwele" },
+        { "file": "tracks/graduation(flac)/10 - Everything I Am feat. DJ Premier.flac", "title": "Everything I Am ft. DJ Premier" },
+        { "file": "tracks/graduation(flac)/11 - The Glory.flac", "title": "The Glory" },
+        { "file": "tracks/graduation(flac)/12 - Homecoming.flac", "title": "Homecoming" },
+        { "file": "tracks/graduation(flac)/13 - Big Brother.flac", "title": "Big Brother" },
+        { "file": "tracks/graduation(flac)/14 - Good Night feat. Mos Def & Al Be.flac", "title": "Good Night ft. Mos Def & Al Be" },
+        { "file": "tracks/graduation(flac)/15 - Bittersweet Poetry feat. John Mayer.flac", "title": "Bittersweet Poetry ft. John Mayer" }
+      ]
+    },
+    {
+      "name": "Certified Lover Boy",
+      "tracks": [
+        { "file": "tracks/CLB/01. Champagne Poetry.mp3", "title": "Champagne Poetry" },
+        { "file": "tracks/CLB/02. Papi's Home.mp3", "title": "Papi's Home" },
+        { "file": "tracks/CLB/03. Girls Want Girls.mp3", "title": "Girls Want Girls" },
+        { "file": "tracks/CLB/04. In The Bible.mp3", "title": "In The Bible" },
+        { "file": "tracks/CLB/05. Love All.mp3", "title": "Love All" },
+        { "file": "tracks/CLB/06. Fair Trade.mp3", "title": "Fair Trade" },
+        { "file": "tracks/CLB/07. Way 2 Sexy.mp3", "title": "Way 2 Sexy" },
+        { "file": "tracks/CLB/08. TSU.mp3", "title": "TSU" },
+        { "file": "tracks/CLB/09. N 2 Deep.mp3", "title": "N 2 Deep" },
+        { "file": "tracks/CLB/10. Pipe Down.mp3", "title": "Pipe Down" },
+        { "file": "tracks/CLB/11. Yebba's Heartbreak.mp3", "title": "Yebba's Heartbreak" },
+        { "file": "tracks/CLB/12. No Friends In The Industry.mp3", "title": "No Friends In The Industry" },
+        { "file": "tracks/CLB/13. Knife Talk.mp3", "title": "Knife Talk" },
+        { "file": "tracks/CLB/14. 7am On Bridle Path.mp3", "title": "7am On Bridle Path" },
+        { "file": "tracks/CLB/15. Race My Mind.mp3", "title": "Race My Mind" },
+        { "file": "tracks/CLB/16. Fountains.mp3", "title": "Fountains" },
+        { "file": "tracks/CLB/17. Get Along Better.mp3", "title": "Get Along Better" },
+        { "file": "tracks/CLB/18. You Only Live Twice.mp3", "title": "You Only Live Twice" },
+        { "file": "tracks/CLB/19. IMY2.mp3", "title": "IMY2" },
+        { "file": "tracks/CLB/20. Fucking Fans.mp3", "title": "Fucking Fans" },
+        { "file": "tracks/CLB/21. The Remorse.mp3", "title": "The Remorse" }
+      ]
+    },
+    {
+      "name": "The Life of Pablo",
+      "tracks": [
+        { "file": "tracks/TLOP/01. Kanye West - Ultralight Beam.mp3", "title": "Ultralight Beam" },
+        { "file": "tracks/TLOP/02. Kanye West - Father Stretch My Hands Pt. 1.mp3", "title": "Father Stretch My Hands Pt. 1" },
+        { "file": "tracks/TLOP/03. Kanye West - Pt. 2.mp3", "title": "Pt. 2" },
+        { "file": "tracks/TLOP/04. Kanye West - Famous.mp3", "title": "Famous" },
+        { "file": "tracks/TLOP/05. Kanye West - Feedback.mp3", "title": "Feedback" },
+        { "file": "tracks/TLOP/06. Kanye West - Low Lights.mp3", "title": "Low Lights" },
+        { "file": "tracks/TLOP/07. Kanye West - Highlights.mp3", "title": "Highlights" },
+        { "file": "tracks/TLOP/08. Kanye West - Freestyle 4.mp3", "title": "Freestyle 4" },
+        { "file": "tracks/TLOP/09. Kanye West - I Love Kanye.mp3", "title": "I Love Kanye" },
+        { "file": "tracks/TLOP/10. Kanye West - Waves.mp3", "title": "Waves" },
+        { "file": "tracks/TLOP/11. Kanye West - FML.mp3", "title": "FML" },
+        { "file": "tracks/TLOP/12. Kanye West - Real Friends.mp3", "title": "Real Friends" },
+        { "file": "tracks/TLOP/13. Kanye West - Wolves.mp3", "title": "Wolves" },
+        { "file": "tracks/TLOP/14. Kanye West - Silver Surfer Intermission.mp3", "title": "Silver Surfer Intermission" },
+        { "file": "tracks/TLOP/15. Kanye West - 30 Hours.mp3", "title": "30 Hours" },
+        { "file": "tracks/TLOP/16. Kanye West - No More Parties In LA.mp3", "title": "No More Parties In LA" },
+        { "file": "tracks/TLOP/17. Kanye West - Facts (Charlie Heat Version).mp3", "title": "Facts (Charlie Heat Version)" },
+        { "file": "tracks/TLOP/18. Kanye West - Fade.mp3", "title": "Fade" }
+      ]
+    },
+    {
+      "name": "AT.LONG.LAST.A$AP",
+      "tracks": [
+        { "file": "tracks/asap(flaq)/02-asap_rocky-canal_st._(feat._bones).flac", "title": "Canal St. ft. Bones" },
+        { "file": "tracks/asap(flaq)/03-asap_rocky-fine_whine_(feat._future_and_m.i.a.).flac", "title": "Fine Whine ft. Future & M.I.A." },
+        { "file": "tracks/asap(flaq)/04-asap_rocky-lsd.flac", "title": "L$D" },
+        { "file": "tracks/asap(flaq)/05-asap_rocky-excuse_me.flac", "title": "Excuse Me" },
+        { "file": "tracks/asap(flaq)/06-asap_rocky-jd.flac", "title": "JD" },
+        { "file": "tracks/asap(flaq)/07-asap_rocky-lord_pretty_flacko_joyde_2_(lpfj2).flac", "title": "Lord Pretty Flacko Jodye 2 (LPFJ2)" },
+        { "file": "tracks/asap(flaq)/08-asap_rocky-electric_body_(feat._schoolboy_q).flac", "title": "Electric Body ft. ScHoolboy Q" },
+        { "file": "tracks/asap(flaq)/09-asap_rocky-jukebox_joints_(feat._joe_fox_and_kanye_west).flac", "title": "Jukebox Joints ft. Joe Fox & Kanye West" },
+        { "file": "tracks/asap(flaq)/10-asap_rocky-max_b_(feat._joe_fox).flac", "title": "Max B ft. Joe Fox" },
+        { "file": "tracks/asap(flaq)/11-asap_rocky-pharsyde_(feat._joe_fox).flac", "title": "Pharsyde ft. Joe Fox" },
+        { "file": "tracks/asap(flaq)/12-asap_rocky-wavybone_(feat._juicy_j_and_ugk).flac", "title": "Wavybone ft. Juicy J & UGK" },
+        { "file": "tracks/asap(flaq)/13-asap_rocky-westside_highway_(feat._james_fauntleroy).flac", "title": "West Side Highway ft. James Fauntleroy" },
+        { "file": "tracks/asap(flaq)/14-asap_rocky-better_things.flac", "title": "Better Things" },
+        { "file": "tracks/asap(flaq)/15-asap_rocky-ms_(feat._lil_wayne).flac", "title": "M'$ ft. Lil Wayne" },
+        { "file": "tracks/asap(flaq)/16-asap_rocky-dreams_(interlude).flac", "title": "Dreams (Interlude)" },
+        { "file": "tracks/asap(flaq)/17-asap_rocky-everyday_(feat._rod_stewart_and_miguel_and_mark_ronson).flac", "title": "Everyday ft. Rod Stewart, Miguel & Mark Ronson" },
+        { "file": "tracks/asap(flaq)/18-asap_rocky-back_home_(feat._mos_def_and_acyde_and_yams).flac", "title": "Back Home ft. Mos Def, Acyde & Yams" }
+      ]
+    }
+  ]
+}
